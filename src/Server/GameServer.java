@@ -40,7 +40,7 @@ public class GameServer {
         }
     }
 
-    // accept the players
+    // connection to clients
     public void acceptClients() {
 
         while (numPlayers < maxPlayers) {
@@ -64,9 +64,12 @@ public class GameServer {
                     p2Socket = s;
                     p2ReadRunnable = rfc;
                     p2WriteRunnable = wtc;
+
+                    // send start
                     p1WriteRunnable.sendStartMsg();
                     p2WriteRunnable.sendStartMsg();
 
+                    // create and start threads
                     Thread readThread1 = new Thread(p1ReadRunnable);
                     Thread readThread2 = new Thread(p2ReadRunnable);
                     readThread1.start();
@@ -88,7 +91,7 @@ public class GameServer {
         System.out.println("--The GAME begins!--");
     }
 
-
+    // end game and setup new
     public static void end() {
         numPlayers = 0;
 
@@ -113,6 +116,7 @@ public class GameServer {
             System.out.println("RFC" + playerID + "Runnable created");
         }
 
+        // read the player positions
         @Override
         public void run() {
             try {
@@ -148,6 +152,7 @@ public class GameServer {
             System.out.println("WTC" + playerID + "Runnable created");
         }
 
+        // send the location of the other player
         @Override
         public void run() {
             try {

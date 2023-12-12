@@ -22,6 +22,7 @@ public class PlayerSprite {
         g2d.fill(square);
     }
 
+    // move, set, get player position
     public void moveH(double n){
         x += n;
     }

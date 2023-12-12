@@ -7,7 +7,7 @@ import static Game.PlayerFrame.*;
 
 public class PlayerServer {
 
-    static String serverIP = "92.75.171.231";
+    static String serverIP = "192.168.1.100";
     //static String serverIP = "localhost";
     static int port = 9933;
     static Socket socket;
@@ -58,6 +58,7 @@ public class PlayerServer {
             try {
                 while (true) {
                     if (enemy != null) {
+                        // update the enemy position
                         enemy.setX(dataIn.readDouble());
                         enemy.setY(dataIn.readDouble());
                     }
@@ -94,6 +95,7 @@ public class PlayerServer {
             try {
                 while (true) {
                     if (me != null) {
+                        // send my positions
                         dataOut.writeDouble(me.getX());
                         dataOut.writeDouble(me.getY());
                         dataOut.flush();

@@ -19,6 +19,7 @@ public class PlayerFrame {
         GUI();
     }
 
+    // create GUI and set keyListener
     public static void GUI(){
         frame = new JFrame();
         frame.setSize(width, height);
